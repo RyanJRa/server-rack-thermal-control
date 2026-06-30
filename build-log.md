@@ -24,6 +24,7 @@ https://github.com/user-attachments/assets/4ce04e39-1df1-4afa-b1c2-e18521d48242
 
 **29 June 2026** - Stood up MQTT broker. Installed WSL2 + Ubuntu (chose Linux for broker per industry-standard goal). Initial Linux password mistyped during blind install setup; reset via **wsl -u root** + **passwd**. Installed Mosquitto 2.0.22 (broker + clients) via apt; confirmed service active. Verified pub/sub in isolation: mosquitto_sub -t test/topic in one terminal received mosquitto_pub message from another. Broker proven working standalone before adding Node-RED.
 
+**30 June 2026** - installed Node.js v20 via NodeSource since apt's version was too old; installed Node-RED, editor reachable at localhost:1880.
 
 
 
