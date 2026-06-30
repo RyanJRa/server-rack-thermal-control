@@ -22,6 +22,8 @@ Solution: Voltage divider at the cost of resolution. Due to output getting scale
 
 https://github.com/user-attachments/assets/4ce04e39-1df1-4afa-b1c2-e18521d48242
 
+**29 June 2026** - Stood up MQTT broker. Installed WSL2 + Ubuntu (chose Linux for broker per industry-standard goal). Initial Linux password mistyped during blind install setup; reset via **wsl -u root** + **passwd**. Installed Mosquitto 2.0.22 (broker + clients) via apt; confirmed service active. Verified pub/sub in isolation: mosquitto_sub -t test/topic in one terminal received mosquitto_pub message from another. Broker proven working standalone before adding Node-RED.
+
 
 
 
