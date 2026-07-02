@@ -24,7 +24,26 @@ https://github.com/user-attachments/assets/4ce04e39-1df1-4afa-b1c2-e18521d48242
 
 **29 June 2026** - Stood up MQTT broker. Installed WSL2 + Ubuntu (chose Linux for broker per industry-standard goal). Initial Linux password mistyped during blind install setup; reset via **wsl -u root** + **passwd**. Installed Mosquitto 2.0.22 (broker + clients) via apt; confirmed service active. Verified pub/sub in isolation: mosquitto_sub -t test/topic in one terminal received mosquitto_pub message from another. Broker proven working standalone before adding Node-RED.
 
-**30 June 2026** - installed Node.js v20 via NodeSource since apt's version was too old; installed Node-RED, editor reachable at localhost:1880.
+**30 June 2026** - Installed Node.js v20 via NodeSource since apt's version was too old; installed Node-RED, editor reachable at localhost:1880.
+
+**1 July 2026** - Sized the ACS712 voltage divider
+<br> Goal: scale the ACs712's output voltage down so it never exceeds the ESP32's 3.3V input limit, while keeping good measurement resolution.
+<br><br>
+The decision: Instead of designing for the sensor's full 5A range (safe but wastes resolution) or just my exact expected load (good resolution but risky if current spikes), I sized the divider for a realistic ceiling of ~4A which is above anything my load can actually draw (~2.4A from the load bank), with margin. This keeps resolution high at my operating point while staying safe. I added a 1N4728 3.3V Zener diode as clamp on the ESP32 pin for fault protection so that even an unexpected spike can't push the pin over 3.3V. The divider handles the normal range while Zener catches abnormal ranges. 
+<br> <br>
+My numbers: 
+<br> - ACS712 outputs 2.5V at 0A, rising 0.185V per amp
+<br> - At my 4A design ceiling: 2.5 = (4 x 0.185) = 3.24V (the max the divider must handle)
+<br> - Chose divider resistors R1 = 1kΩ (from sensor output) and R2 = 10kΩ (to ground), &nbsp;&nbsp;&nbsp;&nbsp; tap at the junction to the ESP32
+<br> - Ratio = R2/(R1 + R2) = 10/11 = 0.909
+<br> - Total resistance 11kΩ - low enough that the ESP32's ADC won't distort the reading (avoids the high-impedance loading effect)
+
+Predicted test values to verify
+<br> - At 0A: sensor = 2.5V -> ESP32 pin = 2.5 x 0.909 = ~2.27V
+<br> - At 4A: sensor = 3.24V -> ESP32 pin = ~2.95V
+<br> - Measurement range at the ADC sits between ~2.27V and ~2.95V
+
+
 
 
 
