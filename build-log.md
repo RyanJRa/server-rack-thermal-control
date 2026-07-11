@@ -43,7 +43,7 @@ Predicted test values to verify
 <br> - At 4A: sensor = 3.24V -> ESP32 pin = ~2.95V
 <br> - Measurement range at the ADC sits between ~2.27V and ~2.95V
 
-**7 June 2026** - KPI targets commited
+**7 July 2026** - KPI targets commited
 <br> <img width="518" height="596" alt="image" src="https://github.com/user-attachments/assets/5b4f555d-135b-4667-aefc-4ab2f811bba2" />
 
 
