@@ -46,7 +46,11 @@ Predicted test values to verify
 **7 July 2026** - KPI targets commited
 <br> <img width="518" height="596" alt="image" src="https://github.com/user-attachments/assets/5b4f555d-135b-4667-aefc-4ab2f811bba2" />
 
-
+**9 July 2026** - Completed Node-RED telemetry pipeline end to end. 
+<br> Built flow: mqtt-in -> debug + guage. 
+<br> Confirmed broker ->Node-RED by publishing test message to debug panel. Dashboard 2.0 (@flowfuse/node-red/dashboard because old node-red-dashboard depreciated).
+<br> Wired gauge and built simple UI hierarchy, published numeric value, ned tracked on dashboard. Full piepline provenL CLI -> Mosquitto -> Node-Red -> live dashboard. 
+<br> System is ready to swap CLI publisher for ESP32.
 
 
 
