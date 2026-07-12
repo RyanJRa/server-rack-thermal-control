@@ -48,10 +48,16 @@ Predicted test values to verify
 
 **9 July 2026** - Completed Node-RED telemetry pipeline end to end. 
 <br> Built flow: mqtt-in -> debug + guage. 
-<br> Confirmed broker ->Node-RED by publishing test message to debug panel. Dashboard 2.0 (@flowfuse/node-red/dashboard because old node-red-dashboard depreciated).
+<br> Confirmed broker -> Node-RED by publishing test message to debug panel. Dashboard 2.0 (@flowfuse/node-red/dashboard because old node-red-dashboard depreciated).
 <br> Wired gauge and built simple UI hierarchy, published numeric value, ned tracked on dashboard. Full piepline provenL CLI -> Mosquitto -> Node-Red -> live dashboard. 
 <br> System is ready to swap CLI publisher for ESP32.
 
+**10 July 2026** - ATX PSU bring-up.
+<br> Connected PowerSpec FX V2 9non-modular) 24-pin to MELIFE breakout; other cables left dangling/isolated.
+<br> Rails verified with mutimeter: 12V rail = 12.1V, 5V = 5.2V, 3.3V = 3.4V. all within ATX ±5% tolerance. Power source confirmed good in isolation before connecting any load.
+
+**11 July 2026** - Voltage Divider verified.
+<br> Built 1kΩ (R1)/10kΩ (R2) divider on breadboard, fed from PSU 3.3V rail (measured 3.4V). Preducted junction voltage 3.4 x 0.909 = 3.09V; measured 3.06V - within resistor tolerance (±5%). Divider ratio and values confirmed in isolation before integrating with ACS712/ESP32.
 
 
 
