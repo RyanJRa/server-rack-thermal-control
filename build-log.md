@@ -67,7 +67,11 @@ Predicted test values to verify
 <br> - (sensorVoltage - 2.5) / 0.185 -> amps (undoes ACS712 zero-offset and sensitivity). Verified each step against raw values on a floating pin: readings printed cleanly at 1 Hz (matches KPI sample rate), and floating input correctly computed as large negative current (~-11.8A), as predicted - nonsense input, but processed correctly, confirming the math.
 <br> **Note: Not yet accurate -** needs averaging (noise reduction) and calibration against multimeter (ideal vs. real constants - measured divider ratio was 0.900 vs. ideal 0.909; real ACS712 offset varies; ESP32 ADC is nonlinear).
 
-
+**13 July 2026** - Added 100-sample averaging to current-sensing firmware. 
+<br> Reads ADC 100 times per cycle, averages (sum/100) before conversion, to reduce random noise (SNR imporvement). 
+<br> Chose 100 samples: strong noise reduction, negligible time (~sub-ms vs. 1s loop), past the point of meaningful diminishing returns. 
+<br> Verified on floating pin: reading spread tightened from ~20 counts (single read) to ~2 counts (averaged).
+<br> **Note:** mangnitude of values still meaningless (floating pin); confims stabalization only. Real accuracy pending sensor connection + multimeter calibration at makerpace.
 
 
 
