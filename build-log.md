@@ -59,7 +59,13 @@ Predicted test values to verify
 **11 July 2026** - Voltage Divider verified.
 <br> Built 1kΩ (R1)/10kΩ (R2) divider on breadboard, fed from PSU 3.3V rail (measured 3.4V). Preducted junction voltage 3.4 x 0.909 = 3.09V; measured 3.06V - within resistor tolerance (±5%). Divider ratio and values confirmed in isolation before integrating with ACS712/ESP32.
 
-
+**12 July 2025** - Wrote current-sensing firmware (esp32-current-sense).
+<br> Built the raw-ADC-to-amps conversion chain, all constants derived from datasheet + divider design:
+<br> - analogRead(GPIO32) -> raw 0-4095. Used GPIO32 specifically because it's on ADC1; ADC2 shaed hardware with WiFi and breaks analog reads when WiFi is active (needed for MQTT)
+<br> - raw x (3.3 / 4095.0) -> ESP32 voltage. Used 4095.0 (not 4095) to force floating point division and avoid integer division clipping.
+<br> - voltage / 0.909 -> sensor voltage (undoes the hardware divider in software)
+<br> - (sensorVoltage - 2.5) / 0.185 -> amps (undoes ACS712 zero-offset and sensitivity). Verified each step against raw values on a floating pin: readings printed cleanly at 1 Hz (matches KPI sample rate), and floating input correctly computed as large negative current ( ~-11.8A), as predicted - nonsense input, but processed correctly, confiming the math.
+<br> **Note: Not yet accurate -** needs averaging (noise reduction) and calibration against multimeter (ideal vs. real constants - measured divider ration was 0.900 vs. ideal 0.909; reak ACS712 offset varies; ESP32 ADC is nonlinear).
 
 
 
