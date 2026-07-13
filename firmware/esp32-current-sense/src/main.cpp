@@ -7,8 +7,14 @@ void setup() {
 }
 
 void loop() {
-  int raw = analogRead(SENSOR_PIN); // Reads the raw 0-4095 value from the pin
 
+  long sum = 0;
+
+  for (int i = 0; i < 100; i++) {
+    sum += analogRead(SENSOR_PIN); // Reads the raw 0-4095 value from the pin
+  } 
+
+  int raw = sum / 100; // averages the values out of 100 readings
   float voltage = raw * (3.3 / 4095.0); // Raw ADC pin to ESP32 voltage conversion
   
   float sensorVoltage = voltage / 0.909; // Undoes voltage divider to read sensor output
