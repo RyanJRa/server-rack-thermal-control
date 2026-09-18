@@ -73,7 +73,14 @@ Predicted test values to verify
 <br> Verified on floating pin: reading spread tightened from ~20 counts (single read) to ~2 counts (averaged).
 <br> **Note:** mangnitude of values still meaningless (floating pin); confims stabalization only. Real accuracy pending sensor connection + multimeter calibration at makerpace.
 
-
+**18 September 2026** - First live current sensing + calibration attempt (makerspace).
+Wired full chains: ACS712 in series with 10kΩ load, bench supply driving a known current (0.5A limit). ACS712 output to 1kΩ/10kΩ divider to GPIO32, common ground. Sensor reads and responds to current.
+**Key findings:**
+- ACS712 powered from USB measured 4.64V (not 5.0V). Since zeropoint = VCC/2, actual zero was ~2.32V, not the ideal 2.5V.
+- ESP32 ADC reads lower than actual voltage (multimeer 2.10V at pin vs ESP32-computed 1.94V)
+- Current reading sign is inverted (will be fixed by swapping terminals or in calibration)
+- Zero point drifted during session. Figured root cause is unstable USB supply voltage (ACS712 is ratiometric, USB sags/drifts).
+-   Calibration is invalid until supply is stabilized. Next session: ACS712 will be powered from ATX 5V rail instead of USB.
 
 
 
