@@ -74,7 +74,7 @@ Predicted test values to verify
 <br> **Note:** mangnitude of values still meaningless (floating pin); confims stabalization only. Real accuracy pending sensor connection + multimeter calibration at makerpace.
 
 **18 September 2026** - First live current sensing + calibration attempt (makerspace).
-Wired full chains: ACS712 in series with 10kΩ load, bench supply driving a known current (0.5A limit). ACS712 output to 1kΩ/10kΩ divider to GPIO32, common ground. Sensor reads and responds to current.
+Wired full chains: ACS712 in series with 10Ω load, bench supply driving a known current (0.5A limit). ACS712 output to 1kΩ/10kΩ divider to GPIO32, common ground. Sensor reads and responds to current.
 <br> **Key findings:**
 <br> - ACS712 powered from USB measured 4.64V (not 5.0V). Since zeropoint = VCC/2, actual zero was ~2.32V, not the ideal 2.5V.
 <br> - ESP32 ADC reads lower than actual voltage (multimeer 2.10V at pin vs ESP32-computed 1.94V)
