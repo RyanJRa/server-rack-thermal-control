@@ -25,4 +25,4 @@ The rack tracks data-center-style KPIs, including PUE-lite (cooling power relati
 
 **Stack:** ESP32 (C++/PlatformIO) · ACS712 current sensor · Mosquitto MQTT · Node-RED · Linux · Altium Designer
 
-( [architecture diagram](flowchart.md), and [BOM](https://github.com/RyanJRa/server-rack-thermal-control/blob/main/build-log.md#:~:text=Fans%3A%203,protect%20measurement%20integrity.)— updated as the build progresses._)
+([Architecture diagram](flowchart.md) · [BOM](https://github.com/RyanJRa/server-rack-thermal-control/blob/main/build-log.md#:~:text=Fans%3A%203,protect%20measurement%20integrity.) · [Build log](build-log.md))
